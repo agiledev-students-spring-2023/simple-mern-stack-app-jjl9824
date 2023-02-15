@@ -21,6 +21,23 @@ mongoose
 // load the dataabase models we want to deal with
 const { Message } = require('./models/Message')
 const { User } = require('./models/User')
+//const { default: AboutMe } = require('../front-end/src/AboutMe')
+
+// a route to about me page
+app.get('/about-me', async (req, res) => {
+  try {
+    res.json({
+      aboutMe: "Hey! I'm Jeffrey Li and I'm a Computer Science major at NYU on my third year. \n I like playing tennis, video games, and listening to a variety of music.",
+      status: 'all good',
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to load page',
+    })
+  }
+})
 
 // a route to handle fetching all messages
 app.get('/messages', async (req, res) => {
